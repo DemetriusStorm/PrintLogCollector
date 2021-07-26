@@ -1,0 +1,15 @@
+*.egg-info
+__pycache__
+dist/
+pyinstaller/
+printlogcollector/
+backup/
+templates/
+static/
+*.pyc
+.venv/
+.idea/
+temp_test/
+.coverage
+coverage.xml
+PrintLogCollector_config.ini

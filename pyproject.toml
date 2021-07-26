@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "PrintLogCollector"
+version = "1.1.230721"
+description = "Print log collector"
+authors = ["Dmitriy Bulygin <demerius.storm@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+winevt = "^0.0.11"
+pyodbc = "^4.0.31"
+xmltodict = "^0.12.0"
+pywin32 = "^301"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+icecream = "^2.1.1"
+pyinstaller = "^4.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
