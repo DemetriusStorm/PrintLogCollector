@@ -43,7 +43,7 @@ os.chdir(work_dir)
 # Настройка путей к конфигурациям logger и app
 config_app_path = os.path.join(work_dir, 'PrintLogCollector_config.ini')
 config_logger_path = os.path.join(work_dir, 'logging_config.ini')
-# Настройка парсера конфига app
+# Настройка конфига app
 config_parser = configparser.ConfigParser()
 config_parser.read(config_app_path)
 # Достаем данные из файла конфигурации
@@ -164,7 +164,7 @@ def dt_translate_and_format(utc_dt: str) -> str:
     """
     Конвертация даты/времени формата '%Y-%m-%dT%H:%M:%S.fZ' из UTC 00Z в текущее время с локальным часовым поясом.
     Данные подготовлены сразу для импорта в БД.
-    Для загрузки xml данных сконверртированных из ручной выгрузки Event, формат даты SystemTime отличается
+    Для загрузки xml данных конвертированных из ручной выгрузки Event, формат даты SystemTime отличается
     от формата по прямому запросу к журналу. '%Y-%m-%d %H:%M:%S.f'. Сделаем выборку.
     """
     if 'T' in utc_dt:
@@ -191,9 +191,9 @@ def load_bookmark(action: str, pContext: str):
     if not os.path.exists(bookmark_dir):
         os.mkdir(bookmark_dir)
     try:
-        # Проверем наличие bookmark.xml, если есть, пробуем обработать через стандартный handle_event.
+        # Проверяем наличие bookmark.xml, если есть, пробуем обработать через стандартный handle_event.
         if os.path.isfile(bookmark_filename):
-            logger.debug(f'С прошлой сесии обнаружен {bookmark_filename}, будет произведен импорт данных в БД.')
+            logger.debug(f'С прошлой сессии обнаружен {bookmark_filename}, будет произведен импорт данных в БД.')
             with open(bookmark_filename, 'r') as bm_file:
                 logger.debug(f'Файл {bookmark_filename} открыт.')
                 for num, event in enumerate(bm_file.readlines(), start=1):
@@ -227,7 +227,7 @@ def handle_except(error_msg: str) -> None:
 
 
 def handle_event(action: str, pContext: str, event) -> None:
-    """Основной метод обработки потока данных спулера печати."""
+    """Основной метод обработки потока данных."""
     event_xml_dump = event
     # Пробуем снять дамп в xml с обработкой исключения, на случай, если переданы данные из bookmark.xml,
     # исключение сработает, т.к. данные уже в формате xml и конвертация не требуется.
